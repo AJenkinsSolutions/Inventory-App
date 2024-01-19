@@ -1,0 +1,44 @@
+src/
+|-- main/
+    |-- java/
+        |-- com/
+            |-- yourcompany/
+                |-- yourapp/
+                    |-- controller/
+                        |-- InventoryController.java
+                        |-- UserController.java
+                        |-- RoleController.java
+                    |-- service/
+                        |-- InventoryService.java
+                        |-- UserService.java
+                        |-- RoleService.java
+                    |-- repository/
+                        |-- InventoryRepository.java
+                        |-- UserRepository.java
+                        |-- RoleRepository.java
+                    |-- model/
+                        |-- InventoryItem.java
+                        |-- User.java
+                        |-- Role.java
+                    |-- exception/
+                        |-- ResourceNotFoundException.java
+                        |-- ApiExceptionHandler.java
+                    |-- config/
+                        |-- SecurityConfig.java
+                    |-- YourApplication.java
+    |-- resources/
+        |-- application.properties
+|-- test/
+    |-- java/
+        |-- com/
+            |-- yourcompany/
+                |-- yourapp/
+                    |-- controller/
+                        |-- InventoryControllerTests.java
+                        |-- UserControllerTests.java
+                    |-- service/
+                        |-- InventoryServiceTests.java
+                        |-- UserServiceTests.java
+                    |-- repository/
+                        |-- InventoryRepositoryTests.java
+                        |-- UserRepositoryTests.java
