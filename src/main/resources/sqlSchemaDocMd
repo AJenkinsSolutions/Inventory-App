@@ -1,0 +1,68 @@
+SQL Schema Documentation for Inventory Management System
+Document Version
+1.0
+
+Introduction
+This document describes the SQL schema for the Inventory Management System. It outlines the structure and relationships of the tables within the database, providing a clear overview of how data is organized and managed.
+
+Tables Overview
+1. categories
+Description: Stores information about item categories.
+Columns:
+category_id (INT, Primary Key, Auto Increment): Unique identifier for each category.
+category_name (VARCHAR(255), Not Null): Name of the category.
+description (TEXT): Description of the category.
+ParentCategoryId (INT): References category_id for parent-child relationship.
+CreatedAt (TIMESTAMP): Timestamp of when the category was created.
+CreatedBy (VARCHAR(255)): Identifier of who created the category.
+LastUpdated (TIMESTAMP): Timestamp of the last update.
+2. inventory_items
+Description: Contains details of each inventory item.
+Columns:
+item_id (INT, Primary Key, Auto Increment): Unique identifier for each item.
+item_name (VARCHAR(255), Not Null): Name of the item.
+category_id (INT): References categories.category_id.
+quantity (INT): Quantity of the item in stock.
+location (VARCHAR(255)): Storage location of the item.
+description (TEXT): Detailed description of the item.
+CreatedAt, CreatedBy, LastUpdated: Audit fields as in categories.
+3. users
+Description: Manages user information.
+Columns:
+user_id (INT, Primary Key, Auto Increment): Unique identifier for each user.
+username (VARCHAR(255), Not Null, Unique): Username for the user.
+password (VARCHAR(255), Not Null): Hashed password for the user.
+email (VARCHAR(255), Unique): Email address of the user.
+is_active (BOOLEAN): Status of the user's account.
+CreatedAt, CreatedBy, LastUpdated: Audit fields as in categories.
+4. roles
+Description: Defines user roles.
+Columns:
+role_id (INT, Primary Key, Auto Increment): Unique identifier for each role.
+role_name (VARCHAR(255), Not Null, Unique): Name of the role.
+description (TEXT): Description of the role.
+parent_role_id (INT): References role_id for hierarchical roles.
+CreatedAt, CreatedBy, LastUpdated: Audit fields as in categories.
+5. user_roles
+Description: Links users to their roles.
+Columns:
+user_id (INT): References users.user_id.
+role_id (INT): References roles.role_id.
+Composite Primary Key (user_id, role_id).
+6. transaction_histories
+Description: Records transactions of inventory items.
+Columns:
+transaction_id (INT, Primary Key, Auto Increment): Unique identifier for each transaction.
+item_id (INT): References inventory_items.item_id.
+user_id (INT): References users.user_id.
+action_type (ENUM): Type of transaction (e.g., ADD, REMOVE).
+quantity_changed (INT): Amount by which quantity changed.
+timestamp (DATETIME): When the transaction occurred.
+details (TEXT): Additional details about the transaction.
+CreatedAt, CreatedBy, LastUpdated: Audit fields as in categories.
+Entity-Relationship Diagram
+[Include an ERD if available]
+
+Revision History
+Version	Date	Description of Changes
+1.0	YYYY-MM-DD	Initial documentation
