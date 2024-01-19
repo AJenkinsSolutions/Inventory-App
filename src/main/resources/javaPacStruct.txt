@@ -1,9 +1,11 @@
+@Author Alex Jenkins
+
 src/
 |-- main/
     |-- java/
         |-- com/
-            |-- yourcompany/
-                |-- yourapp/
+            |-- ajen(companyName)/
+                |-- inv(yourappmnemonic)
                     |-- controller/
                         |-- InventoryController.java
                         |-- UserController.java
@@ -17,6 +19,8 @@ src/
                         |-- UserRepository.java
                         |-- RoleRepository.java
                     |-- model/
+                    	|-- audit/
+                    		|--AuditEntity.java
                         |-- InventoryItem.java
                         |-- User.java
                         |-- Role.java
@@ -31,8 +35,8 @@ src/
 |-- test/
     |-- java/
         |-- com/
-            |-- yourcompany/
-                |-- yourapp/
+            |-- ajen(yourcompany)/
+                |-- inv(yourapp)/
                     |-- controller/
                         |-- InventoryControllerTests.java
                         |-- UserControllerTests.java
@@ -42,3 +46,18 @@ src/
                     |-- repository/
                         |-- InventoryRepositoryTests.java
                         |-- UserRepositoryTests.java
+                        
+                        
+Key Components of the Structure
+controller/: Contains your REST Controllers. They handle HTTP requests and delegate business logic to services.
+service/: Services contain the core business logic. They interact with repositories to fetch and persist data.
+repository/: Interfaces for data access, typically extending JpaRepository or similar.
+model/: Entity classes representing your database tables.
+exception/: Custom exceptions and exception handling classes.
+config/: Configuration classes, such as security configuration.
+YourApplication.java: The main Spring Boot application class.
+resources/application.properties: Configuration properties for your application.
+test/: Unit and integration tests for your application components.
+
+
+

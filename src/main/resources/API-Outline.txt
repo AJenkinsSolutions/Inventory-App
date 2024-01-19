@@ -1,0 +1,81 @@
+"API outline" 
+
+We use a "Results" Dto object to handle data in the controller this will have 3 components, "Status Message", "Message", "DataObj"
+
+
+1. InventoryController
+Responsible for handling inventory-related operations.
+
+Endpoints
+GET /api/inventory
+
+Description: Retrieve a list of all inventory items.
+Service Method: inventoryService.findAll()
+GET /api/inventory/{id}
+
+Description: Retrieve a single inventory item by ID.
+Service Method: inventoryService.findById(id)
+POST /api/inventory
+
+Description: Create a new inventory item.
+Service Method: inventoryService.create(item)
+PUT /api/inventory/{id}
+
+Description: Update an existing inventory item.
+Service Method: inventoryService.update(id, item)
+DELETE /api/inventory/{id}
+
+Description: Delete an inventory item.
+Service Method: inventoryService.delete(id)
+2. UserController
+Handles user management operations.
+
+Endpoints
+GET /api/users
+
+Description: Retrieve a list of all users.
+Service Method: userService.findAll()
+GET /api/users/{id}
+
+Description: Retrieve a single user by ID.
+Service Method: userService.findById(id)
+POST /api/users
+
+Description: Create a new user.
+Service Method: userService.create(user)
+PUT /api/users/{id}
+
+Description: Update an existing user.
+Service Method: userService.update(id, user)
+DELETE /api/users/{id}
+
+Description: Delete a user.
+Service Method: userService.delete(id)
+3. RoleController
+Manages roles and permissions.
+
+Endpoints
+GET /api/roles
+
+Description: Retrieve a list of all roles.
+Service Method: roleService.findAll()
+GET /api/roles/{id}
+
+Description: Retrieve a single role by ID.
+Service Method: roleService.findById(id)
+POST /api/roles
+
+Description: Create a new role.
+Service Method: roleService.create(role)
+PUT /api/roles/{id}
+
+Description: Update an existing role.
+Service Method: roleService.update(id, role)
+DELETE /api/roles/{id}
+
+Description: Delete a role.
+Service Method: roleService.delete(id)
+Notes:
+Each controller method should handle HTTP requests and delegate business logic to the corresponding service.
+Consider adding error handling for cases like resource not found, invalid input, etc.
+For endpoints that create or update resources, you might want to use DTOs (Data Transfer Objects) to capture input data.
