@@ -6,7 +6,11 @@ import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
-
+/**
+ * 
+ * 
+ * @author ajenk
+ */
 public class AuditEntity {
 	
 	@Column(name = "created_at")

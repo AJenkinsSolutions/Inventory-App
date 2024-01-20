@@ -50,10 +50,15 @@ src/
                         
 Key Components of the Structure
 controller/: Contains your REST Controllers. They handle HTTP requests and delegate business logic to services.
+
 service/: Services contain the core business logic. They interact with repositories to fetch and persist data.
+
 repository/: Interfaces for data access, typically extending JpaRepository or similar.
+
 model/: Entity classes representing your database tables.
+
 exception/: Custom exceptions and exception handling classes.
+
 config/: Configuration classes, such as security configuration.
 YourApplication.java: The main Spring Boot application class.
 resources/application.properties: Configuration properties for your application.
