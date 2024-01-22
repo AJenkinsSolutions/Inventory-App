@@ -1,4 +1,4 @@
-package com.ajen.inv.model;
+package com.ajen.inv.bean;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -19,9 +19,9 @@ public class Result implements Serializable{
 	
 	private String message; 
 	
-	private String response;
+	private Object response;
 
-	public Result(String status, String message, String response) {
+	public Result(String status, String message, Object response) {
 		super();
 		this.status = status;
 		this.message = message;
@@ -44,11 +44,11 @@ public class Result implements Serializable{
 		this.message = message;
 	}
 
-	public String getResponse() {
+	public Object getResponse() {
 		return response;
 	}
 
-	public void setResponse(String response) {
+	public void setResponse(Object response) {
 		this.response = response;
 	}
 
@@ -74,6 +74,9 @@ public class Result implements Serializable{
 	public String toString() {
 		return "Result [status=" + status + ", message=" + message + ", response=" + response + "]";
 	}
+
+	
+
 	
 
 }

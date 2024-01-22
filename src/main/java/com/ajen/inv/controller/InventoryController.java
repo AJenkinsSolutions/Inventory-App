@@ -1,7 +1,13 @@
 package com.ajen.inv.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.ajen.inv.bean.Result;
 
 /**
  * 
@@ -11,17 +17,34 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class InventoryController {
 	
+	private static Logger logger = LoggerFactory.getLogger(InventoryController.class);
 	
 	
-	//TODO: get 
+	
 	/**
 	 * Retrieve a list of all inventory items.
 	 * Service Method: inventoryService.findAll()
 	 * GET /api/inventory/{id}
 	 * @author ajenk
 	 */
-	public void getAllInventoryItems() {
+	@RequestMapping(value = "get", method = RequestMethod.GET)
+	public Result getAllInventoryItems() {
+		logger.info("Entered get method");
+		ModelMap model = new ModelMap();
+		Result result = null; 
 		
+		try {
+			
+			result = new Result("Constants.ok", "Retrieved All Items", model);
+			
+		} catch (Exception e) {
+			logger.error("Error in get method inventory controller");
+			
+			result = new Result("Constants.ERROR", "Failed to Retrieve all items", e.getMessage());
+		}
+		
+		
+		return result;
 	}
 	
 	/**
