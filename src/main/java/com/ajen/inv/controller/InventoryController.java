@@ -29,7 +29,9 @@ public class InventoryController {
 	 */
 	@RequestMapping(value = "get", method = RequestMethod.GET)
 	public Result getAllInventoryItems() {
+		
 		logger.info("Entered get method");
+		
 		ModelMap model = new ModelMap();
 		Result result = null; 
 		
