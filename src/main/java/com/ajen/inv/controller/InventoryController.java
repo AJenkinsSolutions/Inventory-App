@@ -1,13 +1,20 @@
 package com.ajen.inv.controller;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ajen.inv.bean.Result;
+import com.ajen.inv.model.InventoryItem;
+import com.ajen.inv.service.impl.InventoryServiceImpl;
 
 /**
  * 
@@ -19,6 +26,8 @@ public class InventoryController {
 	
 	private static Logger logger = LoggerFactory.getLogger(InventoryController.class);
 	
+	@Autowired
+	InventoryServiceImpl invServiceImpl;
 	
 	
 	/**
@@ -27,7 +36,7 @@ public class InventoryController {
 	 * GET /api/inventory/{id}
 	 * @author ajenk
 	 */
-	@RequestMapping(value = "get", method = RequestMethod.GET)
+	@GetMapping(value = "get")
 	public Result getAllInventoryItems() {
 		
 		logger.info("Entered get method");
@@ -37,6 +46,9 @@ public class InventoryController {
 		
 		try {
 			
+			Iterable<InventoryItem> res = invServiceImpl.getAll();
+			
+			model.addAttribute("item", res);
 			result = new Result("Constants.ok", "Retrieved All Items", model);
 			
 		} catch (Exception e) {
