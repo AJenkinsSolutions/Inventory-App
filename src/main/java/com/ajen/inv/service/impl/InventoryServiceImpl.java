@@ -49,6 +49,34 @@ public class InventoryServiceImpl implements InventoryService{
 	}
 
 	
+	@Override
+	public List<InventoryItem> findAll() {
+		return (List<InventoryItem>) invRepo.findAll();
+	}
+	
+	
+
+	@Override
+	public InventoryItem findById(Long id) {
+		return invRepo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Item not found")); // Replace with a custom exception
+	}
+
+	@Override
+	public InventoryItem save(InventoryItem inventoryItem) {
+		return invRepo.save(inventoryItem);
+    }
+		
+	
+
+	@Override
+	public void delete(Long id) {
+		// TODO Auto-generated method stub
+		invRepo.deleteById(id);
+		
+	}
+
+	
 
 	
 

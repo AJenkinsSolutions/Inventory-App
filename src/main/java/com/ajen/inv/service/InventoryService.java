@@ -17,6 +17,14 @@ public interface InventoryService {
 	
 	public Iterable<InventoryItem> getAll();
 	
+	List<InventoryItem> findAll();
+	
+    InventoryItem findById(Long id);
+    
+    InventoryItem save(InventoryItem inventoryItem);
+    
+    void delete(Long id);
+	
 
 
 }
