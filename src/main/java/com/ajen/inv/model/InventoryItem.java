@@ -2,6 +2,8 @@ package com.ajen.inv.model;
 
 import java.io.Serializable;
 
+import org.hibernate.bytecode.internal.bytebuddy.PrivateAccessorException;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -25,7 +27,7 @@ public class InventoryItem implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="item_id")
 	private Long itemId;
 	
@@ -33,9 +35,13 @@ public class InventoryItem implements Serializable{
 	private String itemName;
 	
 	@Column(name = "category_id")
-	private Long categoryId;
+	private String categoryId;
 	
+	@Column(name = "quantity")
+	private String quantity;
 	
+	@Column(name = "location")
+	private String location;
 
 	public Long getItemId() {
 		return itemId;
