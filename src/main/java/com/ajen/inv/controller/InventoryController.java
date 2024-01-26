@@ -38,29 +38,39 @@ public class InventoryController {
 	
 	
 
-//	@GetMapping
+	@GetMapping("/getAllItems")
     public List<InventoryItem> getAllItems() {
+		
+		logger.info("Entered into getAllItems() method in Inventory Contoller");
         return inventoryItemService.findAll();
     }
 
-    @GetMapping("/{id}")
-    public InventoryItem getItemById(@PathVariable Long id) {
+    @GetMapping("/getItemById/{id}")
+    public InventoryItem getItemById(@PathVariable("id")Long id) {
+    	
+    	logger.info("Entered into getItemById() method in Inventory Controller");
         return inventoryItemService.findById(id);
     }
 
-    @PostMapping
+    @PostMapping("/createItem")
     public InventoryItem createItem(@RequestBody InventoryItem inventoryItem) {
+    	
+    	logger.info("Entered into createItem() method in Inventory Contoller");
         return inventoryItemService.save(inventoryItem);
     }
 
     @PutMapping("/{id}")
     public InventoryItem updateItem(@PathVariable Long id, @RequestBody InventoryItem inventoryItem) {
         // Additional logic to update the item
+    	
+    	logger.info("Entered into gupdateItem() method in Inventory Contoller");
         return inventoryItemService.save(inventoryItem);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteItem(@PathVariable Long id) {
+    	logger.info("Entered into deleteItem() method in Inventory Contoller");
+    	
         inventoryItemService.delete(id);
         return ResponseEntity.ok().build();
     }
