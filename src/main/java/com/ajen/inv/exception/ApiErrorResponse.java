@@ -1,14 +1,10 @@
 package com.ajen.inv.exception;
-/**
- * This class serves as a standard formatted response for errors. 
- * includes a detailed time stamp, message and a custom error code. 
- * 
- * @author ajenk
- */
+
 
 import java.time.LocalDateTime;
 /**
- * 
+ * This class serves as a standard formatted response for errors. 
+ * includes a detailed time stamp, message and a custom error code. 
  * 
  * @author ajenk
  */
@@ -19,6 +15,13 @@ public class ApiErrorResponse {
 	private String message;
 	
 	private String errorCode;
+
+
+	ApiErrorResponse(LocalDateTime now, String message, String errorCode) {
+		this.timeStamp = now; 
+		this.message = message;
+		this.errorCode = errorCode; 
+	}
 
 	public LocalDateTime getTimeStamp() {
 		return timeStamp;
@@ -45,6 +48,7 @@ public class ApiErrorResponse {
 	} 
 	
 	// Other fields like 'details' can be added for more information
+	
 	
 	
 

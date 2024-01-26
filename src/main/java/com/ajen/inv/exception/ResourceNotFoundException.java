@@ -7,11 +7,12 @@ import com.mysql.cj.protocol.Message;
 
 /**
  * This class represents an exception that should be thrown when a requested resource is not found.
+ * This is basically just an extension of the RunTimeException
  * 
  * @author ajenk
  */
 @ResponseStatus(HttpStatus.NOT_FOUND)
-public class ResourceNotFoudException extends RuntimeException{
+public class ResourceNotFoundException extends RuntimeException{
 
 	/**
 	 * 
@@ -19,7 +20,7 @@ public class ResourceNotFoudException extends RuntimeException{
 	private static final long serialVersionUID = 1L;
 	
 
-	public ResourceNotFoudException(String message) {
+	public ResourceNotFoundException(String message) {
 		
 		super(message);
 	}
