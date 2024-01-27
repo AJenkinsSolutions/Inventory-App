@@ -15,6 +15,7 @@ import com.ajen.inv.model.InventoryItem;
 import com.ajen.inv.repository.InventoryRepository;
 import com.ajen.inv.service.InventoryService;
 
+import ch.qos.logback.core.joran.conditional.ThenAction;
 import jakarta.transaction.Transactional;
 
 /**
@@ -30,24 +31,6 @@ public class InventoryServiceImpl implements InventoryService{
 	@Autowired
 	InventoryRepository invRepo;
 
-	@Override
-	@Transactional
-	public Iterable<InventoryItem> getAll() {
-		// TODO Auto-generated method stub
-		
-		 Iterable<InventoryItem> res = null;
-		try {
-			res = invRepo.findAll();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			logger.error(e.getMessage());
-		}
-		
-		
-		return res;
-	}
-
 	
 	@Override
 	public List<InventoryItem> findAll() {
@@ -58,14 +41,47 @@ public class InventoryServiceImpl implements InventoryService{
 
 	@Override
 	public InventoryItem findById(Long id) {
+		logger.info("Entered into getItemById in InventoryServiceImpl");
 		return invRepo.findById(id)
                 .orElseThrow(() -> new RuntimeException("Item not found")); // Replace with a custom exception
 	}
 
 	@Override
 	public InventoryItem save(InventoryItem inventoryItem) {
+		
+		
+		
 		return invRepo.save(inventoryItem);
     }
+	
+	
+	@Override
+	public InventoryItem update(Long id, InventoryItem inventoryItem) {
+	
+		
+		 
+		 try {
+			 
+			 Optional<InventoryItem> optionalObject = invRepo.findById(id);
+			 
+			 optionalObject.ifPresent(dbObj -> {
+				 
+				 dbObj.setItemName(inventoryItem.getItemName());
+				 dbObj.setLocation(inventoryItem.getLocation());
+				 dbObj.setQuantity(inventoryItem.getQuantity());
+				 
+				invRepo.save(dbObj);
+				 
+			 });
+
+			 
+		} catch (Exception e) {
+			logger.error("Exception occured im update() in InventoryServiceImpl " + e.getMessage());
+			e.printStackTrace();
+		}
+		 
+		 return inventoryItem;
+	}
 		
 	
 
@@ -75,6 +91,10 @@ public class InventoryServiceImpl implements InventoryService{
 		invRepo.deleteById(id);
 		
 	}
+
+
+
+	
 
 	
 

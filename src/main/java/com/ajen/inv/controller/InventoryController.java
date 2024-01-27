@@ -59,16 +59,16 @@ public class InventoryController {
         return inventoryItemService.save(inventoryItem);
     }
 
-    @PutMapping("/{id}")
-    public InventoryItem updateItem(@PathVariable Long id, @RequestBody InventoryItem inventoryItem) {
+    @PutMapping("/update/{id}")
+    public InventoryItem updateItem(@PathVariable("id") Long id, @RequestBody InventoryItem inventoryItem) {
         // Additional logic to update the item
     	
     	logger.info("Entered into gupdateItem() method in Inventory Contoller");
-        return inventoryItemService.save(inventoryItem);
+        return inventoryItemService.update(id, inventoryItem);
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deleteItem(@PathVariable Long id) {
+    public ResponseEntity<?> deleteItem(@PathVariable("id") Long id) {
     	logger.info("Entered into deleteItem() method in Inventory Contoller");
     	
         inventoryItemService.delete(id);
