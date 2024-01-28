@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import org.hibernate.bytecode.internal.bytebuddy.PrivateAccessorException;
 
+import com.ajen.inv.audit.AuditEntity;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -19,7 +21,7 @@ import jakarta.persistence.Table;
  */
 @Entity()
 @Table(name= "inventory_items")
-public class InventoryItem implements Serializable{
+public class InventoryItem extends AuditEntity implements Serializable{
 
 	/**
 	 * 
@@ -75,18 +77,5 @@ public class InventoryItem implements Serializable{
 		this.location = location;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-	
-	
-
-	
-	
-	
-	
-	
-	
-	
 
 }

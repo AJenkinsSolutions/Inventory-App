@@ -48,9 +48,7 @@ public class InventoryServiceImpl implements InventoryService{
 
 	@Override
 	public InventoryItem save(InventoryItem inventoryItem) {
-		
-		
-		
+			
 		return invRepo.save(inventoryItem);
     }
 	
