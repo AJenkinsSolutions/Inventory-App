@@ -5,11 +5,11 @@ CREATE TABLE categories (
     category_id INT AUTO_INCREMENT PRIMARY KEY,
     category_name VARCHAR(255) NOT NULL,
     description TEXT,
-    ParentCategoryId INT,
-    CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    CreatedBy VARCHAR(255),
-    LastUpdated TIMESTAMP,
-    FOREIGN KEY (ParentCategoryId) REFERENCES categories(category_id)
+    parent_category_id INT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    created_by VARCHAR(255),
+    last_updated TIMESTAMP,
+    FOREIGN KEY (parent_category_id) REFERENCES categories(category_id)
 );
 
 -- Creating the inventory_items table
@@ -20,9 +20,9 @@ CREATE TABLE inventory_items (
     quantity INT,
     location VARCHAR(255),
     description TEXT,
-	CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    CreatedBy VARCHAR(255),
-    LastUpdated TIMESTAMP,
+	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    created_by VARCHAR(255),
+    last_updated TIMESTAMP,
     FOREIGN KEY (category_id) REFERENCES categories(category_id)
 );
 
@@ -33,9 +33,9 @@ CREATE TABLE users (
     password VARCHAR(255) NOT NULL,
     email VARCHAR(255) UNIQUE,
     is_active BOOLEAN DEFAULT TRUE,
-	CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    CreatedBy VARCHAR(255),
-    LastUpdated TIMESTAMP,
+	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    created_by VARCHAR(255),
+    last_updated TIMESTAMP,
     password_reset_token VARCHAR(255),
     token_expiration TIMESTAMP
 );
@@ -48,9 +48,9 @@ CREATE TABLE roles (
 	description TEXT,						-- Changed to TEXT for longer descriptions
     is_active BOOLEAN DEFAULT TRUE,      	-- New field to activate/deactivate roles
     level INT,  							-- field for role priority or level
-	CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    CreatedBy VARCHAR(255),
-    LastUpdated TIMESTAMP,
+	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    created_by VARCHAR(255),
+    last_updated TIMESTAMP,
      FOREIGN KEY (parent_role_id) REFERENCES roles(role_id)
 );
 
@@ -76,9 +76,9 @@ CREATE TABLE transaction_histories (
     status VARCHAR(255),
     notes TEXT,
     transaction_value DECIMAL(10, 2),
-	CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    CreatedBy VARCHAR(255),
-    LastUpdated TIMESTAMP,
+	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    created_by VARCHAR(255),
+    last_updated TIMESTAMP,
     FOREIGN KEY (item_id) REFERENCES inventory_items(item_id),
     FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
