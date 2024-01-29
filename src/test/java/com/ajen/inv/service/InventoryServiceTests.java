@@ -18,6 +18,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import com.ajen.inv.bean.Result;
 import com.ajen.inv.model.InventoryItem;
 import com.ajen.inv.repository.InventoryRepository;
 import com.ajen.inv.service.impl.InventoryServiceImpl;
@@ -75,8 +76,20 @@ public class InventoryServiceTests {
 		verify(inventoryRepository).findById(anyLong());
 	}
 	
+	@Order(3)
+	@DisplayName("Save Tests")
 	@Test
 	void saveTest() throws Exception {
+		when(inventoryRepository.save(any(InventoryItem.class))).thenReturn(item);
+		
+		InventoryItem results = inventoryService.save(item);
+		
+		assertNotNull(results);
+		
+		assertEquals("Test item Name", results.getItemName());
+		verify(inventoryRepository).save(any(InventoryItem.class));
+		
+		
 		
 	}
 	
