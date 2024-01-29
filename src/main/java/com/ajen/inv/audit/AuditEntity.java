@@ -11,11 +11,11 @@ import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 /**
  * 
- * 
+ * absract classes cannot be instantiated 
  * @author ajenk
  */
 @MappedSuperclass
-public class AuditEntity {
+public abstract class AuditEntity {
 	
 	@Column(name = "created_at")
     @Temporal(TemporalType.TIMESTAMP)
