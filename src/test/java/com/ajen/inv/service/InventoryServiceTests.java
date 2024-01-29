@@ -5,8 +5,7 @@ import static org.mockito.Mockito.*;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
-
+import java.util.Optional;import org.hibernate.boot.model.naming.ImplicitMapKeyColumnNameSource;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Order;
@@ -93,8 +92,19 @@ public class InventoryServiceTests {
 		
 	}
 	
+	@Order(3)
+	@DisplayName("Update Tests")
 	@Test
 	void updateTest() throws Exception {
+		when(inventoryRepository.findById(anyLong())).thenReturn(Optional.of(item));
+		
+		InventoryItem result = inventoryService.update(anyLong(), item);
+		
+		assertNotNull(result);
+		assertEquals("Test item Name", result.getItemName());
+		verify(inventoryRepository).findById(anyLong());
+		verify(inventoryRepository).save(any(InventoryItem.class));
+		
 		
 	}
 	
