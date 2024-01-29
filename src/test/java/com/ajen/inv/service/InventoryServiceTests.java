@@ -108,10 +108,16 @@ public class InventoryServiceTests {
 		
 	}
 	
-	
+	@Order(4)
+	@DisplayName("Delete Test")
 	@Test
 	void deleteTest() throws Exception {
 		
+		doNothing().when(inventoryRepository).deleteById(anyLong());
+		
+		inventoryService.delete(anyLong());
+		
+		verify(inventoryRepository).deleteById(anyLong());
 	}
 	
 }
