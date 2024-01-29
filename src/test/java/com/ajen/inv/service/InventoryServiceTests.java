@@ -5,6 +5,7 @@ import static org.mockito.Mockito.*;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -47,10 +48,9 @@ public class InventoryServiceTests {
 		item.setLocation("TestLocation");
 	}
 	@Order(1)
-	@DisplayName("when FindAll() ThenReturnsListOfItems")
+	@DisplayName("Find All Tests")
 	@Test
 	void findAllTest() throws Exception {
-		
 		
 	when(inventoryRepository.findAll()).thenReturn(Arrays.asList(item));
 	
@@ -61,10 +61,18 @@ public class InventoryServiceTests {
 	verify(inventoryRepository).findAll();
 		
 	}
-
+	
+	@Order(2)
+	@DisplayName("Find By Id Test ")
 	@Test
 	void findByIdTest() throws Exception {
+		when(inventoryRepository.findById(anyLong())).thenReturn(Optional.of(item));
 		
+		InventoryItem results = inventoryService.findById(anyLong());
+		
+		assertNotNull(results);
+		assertEquals("Test item Name", results.getItemName());
+		verify(inventoryRepository).findById(anyLong());
 	}
 	
 	@Test
